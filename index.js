@@ -31,7 +31,7 @@ app.use(cors(corsOptions));
 app.use(express.static("public"));
 
 app.get("/", async (request, response) => {
-  response.send("Updated Cookies cleared and APIs working");
+  response.send("Updated1 Cookies cleared and APIs working");
 });
 
 app.listen(PORT, () => {
