@@ -29,3 +29,8 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: pm2 restart index.js
+    - name: Check commit message for 'production'
+      run: echo "::set-env name=DEPLOY_FLAG::$(if git log --format=%B -n 1 $GITHUB_SHA | grep -qi 'production'; then echo true; else echo false; fi)"
+    - name: Deploy
+      if: env.DEPLOY_FLAG == 'true'
+      run: pm2 restart index.js
